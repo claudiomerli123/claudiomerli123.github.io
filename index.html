@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Ripetizioni online di matematica, fisica, inglese, storia e filosofia per il liceo, con un ingegnere laureato al Politecnico di Milano. Lavagna condivisa, appunti a fine lezione, prima mezz'ora gratuita.">
+<meta property="og:title" content="Ripetizioni con Claudio">
+<meta property="og:description" content="Ripetizioni online per il liceo: matematica, fisica, inglese, storia e filosofia. Prima mezz'ora gratuita.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://claudiomerli123.github.io/">
+<meta name="theme-color" content="#2448ff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%232448ff'/%3E%3Ctext x='16' y='21' font-size='15' font-family='Arial' font-weight='700' fill='white' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
+<title>Ripetizioni con Claudio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: quaderno aperto. Colonna di testo a sinistra, lavagna viva a destra. Tutto allineato a sinistra.
+   Palette: foglio bianco caldo, inchiostro blu (penna), rosso (correzioni), giallo (evidenziatore), verde (spunta). */
+:root{
+  --paper:#fbfbf6; --sheet:#ffffff; --ink:#17202b; --ink-2:#55606d; --rule:#e3e4dc;
+  --pen:#2448ff; --pen-ink:#ffffff; --pen-soft:#e9edff;
+  --red:#ff5a3c; --hi:#ffe14d; --ok:#17b48f; --ok-soft:#e2f7f1;
+  --shadow:0 10px 30px rgba(23,32,43,.08);
+  --display:"Bricolage Grotesque","Trebuchet MS",sans-serif; --body:"Figtree","Segoe UI",system-ui,sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#11161d;--sheet:#182029;--ink:#eef0ea;--ink-2:#a6afb9;--rule:#2b3542;--pen:#6f8bff;--pen-ink:#0e1420;--pen-soft:#1f2a46;--red:#ff7a60;--hi:#e6c93a;--ok:#2fd0a9;--ok-soft:#163a33;--shadow:0 10px 30px rgba(0,0,0,.35);color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#11161d;--sheet:#182029;--ink:#eef0ea;--ink-2:#a6afb9;--rule:#2b3542;--pen:#6f8bff;--pen-ink:#0e1420;--pen-soft:#1f2a46;--red:#ff7a60;--hi:#e6c93a;--ok:#2fd0a9;--ok-soft:#163a33;--shadow:0 10px 30px rgba(0,0,0,.35);color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;padding-block:0 0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);line-height:1.05;text-wrap:balance;margin:0;font-weight:800}
+h1{font-size:clamp(38px,6.2vw,64px);letter-spacing:-.02em}
+h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.015em;margin-bottom:18px}
+h3{font-size:21px;font-weight:700}
+p{margin:0}
+a{color:var(--pen)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--hi);outline-offset:2px}
+.hl{background:linear-gradient(transparent 55%,var(--hi) 55%,var(--hi) 92%,transparent 92%);padding:0 .1em}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--paper);border-bottom:1px solid var(--rule)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--paper)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px}
+.brand{font-family:var(--display);font-weight:800;font-size:20px;text-decoration:none;color:var(--ink);display:flex;align-items:center;gap:8px}
+.brand i{width:14px;height:14px;border-radius:50%;background:var(--pen);display:inline-block}
+.nav nav{display:flex;gap:18px;font-weight:500;font-size:15px}
+.nav nav a{color:var(--ink-2);text-decoration:none}
+.nav nav a:hover{color:var(--ink)}
+@media(max-width:700px){.nav nav{display:none}}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 20px;border-radius:999px;font-weight:700;text-decoration:none;border:2px solid var(--pen);background:var(--pen);color:var(--pen-ink);cursor:pointer;transition:transform .12s,background .12s}
+.btn:hover{transform:translateY(-1px)}
+.btn.ghost{background:transparent;color:var(--pen)}
+.btn.sm{padding:9px 16px;font-size:15px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;padding-block:56px 40px}
+@media(max-width:860px){.hero{grid-template-columns:1fr;gap:28px;padding-block:36px 28px}}
+.hero .lead{font-size:20px;color:var(--ink-2);margin-top:18px;max-width:30em}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.who{display:inline-flex;background:var(--sheet);border:1px solid var(--rule);border-radius:999px;padding:4px;margin-bottom:22px}
+.who button{border:0;background:transparent;border-radius:999px;padding:8px 16px;font-weight:600;color:var(--ink-2);cursor:pointer}
+.who button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.proof{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:26px;font-size:15px;color:var(--ink-2)}
+.proof span{display:flex;align-items:center;gap:6px}
+.proof b{color:var(--ink);font-weight:600}
+.proof svg{width:18px;height:18px;flex:none}
+
+/* whiteboard */
+.board{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;min-width:0}
+.board .bar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;border-bottom:1px solid var(--rule);font-size:13px;color:var(--ink-2)}
+.board .bar b{color:var(--ink);font-weight:600}
+.board .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);display:inline-block;margin-right:6px}
+.board .sheet{padding:20px 22px 16px;background-image:linear-gradient(var(--rule) 1px,transparent 1px),linear-gradient(90deg,var(--rule) 1px,transparent 1px);background-size:24px 24px;background-position:-1px -1px;min-height:300px;display:grid;align-content:start;gap:10px;font-family:var(--display);font-size:22px;font-weight:500}
+.line{display:flex;align-items:baseline;gap:12px;opacity:0;transform:translateX(-6px);transition:opacity .3s,transform .3s}
+.line.on{opacity:1;transform:none}
+.line .m{color:var(--pen);white-space:nowrap}
+.line .why{font-family:var(--body);font-size:14px;color:var(--red);font-weight:500}
+.line.final .m{background:var(--ok-soft);padding:2px 8px;border-radius:6px;color:var(--ok)}
+.board .foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:12px 14px;border-top:1px solid var(--rule);background:var(--paper)}
+.board .foot small{color:var(--ink-2);font-size:13px}
+
+/* sections */
+section{padding-block:56px;border-top:1px solid var(--rule)}
+@media(max-width:700px){section{padding-block:40px}}
+.sub{color:var(--ink-2);font-size:18px;max-width:38em;margin-top:-6px;margin-bottom:28px}
+
+/* subjects */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px}
+.chip{border:2px solid var(--rule);background:var(--sheet);border-radius:999px;padding:10px 18px;font-weight:600;cursor:pointer}
+.chip[aria-selected="true"]{border-color:var(--pen);background:var(--pen-soft);color:var(--pen)}
+.panel{display:grid;grid-template-columns:1fr 1fr;gap:28px;background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);padding:28px}
+@media(max-width:700px){.panel{grid-template-columns:1fr;padding:20px}}
+.panel ul{margin:10px 0 0;padding-left:20px;color:var(--ink-2)}
+.panel li{margin-bottom:6px}
+.panel .tag{display:inline-block;background:var(--hi);color:#17202b;font-weight:700;font-size:13px;padding:3px 10px;border-radius:6px;margin-bottom:10px}
+
+/* method */
+.method{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:st}
+@media(max-width:900px){.method{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.method{grid-template-columns:1fr}}
+.st{position:relative;padding-top:52px}
+.st::before{counter-increment:st;content:counter(st);position:absolute;top:0;left:0;width:40px;height:40px;border-radius:50%;background:var(--pen);color:var(--pen-ink);font-family:var(--display);font-weight:800;font-size:20px;display:grid;place-items:center}
+.st p{color:var(--ink-2);font-size:15.5px;margin-top:6px}
+
+/* prices */
+.pricing{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+@media(max-width:820px){.pricing{grid-template-columns:1fr}}
+.plans{display:grid;gap:14px}
+.plan{display:grid;grid-template-columns:1fr auto;gap:6px 18px;align-items:center;background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);padding:18px 20px}
+.plan.free{border:2px dashed var(--ok)}
+.plan .big{font-family:var(--display);font-weight:800;font-size:30px;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.plan .big small{font-family:var(--body);font-weight:500;font-size:14px;color:var(--ink-2)}
+.plan p{grid-column:1/-1;color:var(--ink-2);font-size:15px}
+.calc{background:var(--pen-soft);border-radius:var(--r);padding:22px}
+.calc label{display:block;font-weight:600;margin-bottom:8px}
+.calc input[type=range]{width:100%;accent-color:var(--pen)}
+.calc .out{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;font-variant-numeric:tabular-nums}
+.calc .out div{background:var(--sheet);border-radius:10px;padding:12px 14px}
+.calc .out b{display:block;font-family:var(--display);font-size:26px;font-weight:800}
+.calc .out span{font-size:13px;color:var(--ink-2)}
+.calc .note{font-size:14px;color:var(--ink-2);margin-top:12px}
+
+/* availability */
+.avail{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;max-width:620px}
+.avail div{text-align:center;font-size:13px;padding:10px 4px;border-radius:8px;background:var(--sheet);border:1px solid var(--rule);color:var(--ink-2)}
+.avail div.on{background:var(--ok-soft);border-color:var(--ok);color:var(--ink);font-weight:600}
+.avail .d{background:transparent;border:0;font-weight:700;color:var(--ink)}
+.legend{font-size:14px;color:var(--ink-2);margin-top:12px}
+
+/* reviews */
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:820px){.reviews{grid-template-columns:1fr}}
+.rev{background:var(--sheet);border:2px dashed var(--rule);border-radius:var(--r);padding:20px;min-height:150px;display:flex;flex-direction:column;gap:10px}
+.rev .stars{color:var(--hi);font-size:18px;letter-spacing:2px;filter:drop-shadow(0 0 0 var(--ink))}
+.rev p{color:var(--ink-2);font-style:italic}
+.rev .who{font-size:14px;font-weight:600;margin-top:auto}
+
+/* faq */
+.faq{max-width:760px;display:grid;gap:8px}
+.faq details{background:var(--sheet);border:1px solid var(--rule);border-radius:12px;padding:0 18px}
+.faq summary{cursor:pointer;font-weight:600;padding:16px 0;list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--display);font-size:24px;color:var(--pen);line-height:1;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding-bottom:16px;color:var(--ink-2)}
+
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:820px){.contact{grid-template-columns:1fr}}
+.form{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--r);padding:22px;display:grid;gap:14px}
+.form label{display:grid;gap:6px;font-weight:600;font-size:15px}
+.form input,.form select,.form textarea{font:inherit;padding:11px 12px;border:1.5px solid var(--rule);border-radius:10px;background:var(--paper);color:var(--ink);width:100%}
+.form textarea{min-height:80px;resize:vertical}
+.form .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.form .two{grid-template-columns:1fr}}
+.direct{display:grid;gap:14px;align-content:start}
+.direct .row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.direct code{font-family:var(--body);background:var(--sheet);border:1px solid var(--rule);padding:8px 12px;border-radius:10px;font-size:16px;font-variant-numeric:tabular-nums}
+.copy{border:1.5px solid var(--rule);background:transparent;border-radius:999px;padding:7px 14px;font-size:14px;cursor:pointer}
+.direct p{color:var(--ink-2)}
+footer{padding-block:28px 40px;border-top:1px solid var(--rule);color:var(--ink-2);font-size:14px;display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+</style>
+</head>
+<body>
+
+<div class="nav"><div class="wrap">
+  <a class="brand" href="#top"><i></i>Ripetizioni con Claudio</a>
+  <nav><a href="#materie">Materie</a><a href="#metodo">Metodo</a><a href="#prezzi">Prezzi</a><a href="#genitori">Per i genitori</a><a href="#recensioni">Recensioni</a></nav>
+  <a class="btn sm" href="#contatti">Prova gratis</a>
+</div></div>
+
+<main class="wrap" id="top">
+
+<div class="hero">
+  <div>
+    <div class="who" role="group" aria-label="Chi sei">
+      <button type="button" data-who="studente" aria-pressed="true">Sono uno studente</button>
+      <button type="button" data-who="genitore" aria-pressed="false">Sono un genitore</button>
+    </div>
+    <h1 data-s="Ti spiego finché non ti si <span class='hl'>accende la lampadina</span>." data-g="Un tutor che vostro figlio <span class='hl'>capisce davvero</span>.">Ti spiego finché non ti si <span class="hl">accende la lampadina</span>.</h1>
+    <p class="lead" data-s="Matematica, fisica, inglese, storia e filosofia per il liceo. Online, su una lavagna condivisa, con un ingegnere del Politecnico che ha fatto il liceo come te." data-g="Ripetizioni online per il liceo, con lavagna condivisa e appunti a fine lezione. Metodo chiaro, prima mezz'ora gratuita e nessun vincolo.">Matematica, fisica, inglese, storia e filosofia per il liceo. Online, su una lavagna condivisa, con un ingegnere del Politecnico che ha fatto il liceo come te.</p>
+    <div class="cta">
+      <a class="btn" href="#contatti">Prenota la mezz'ora gratuita</a>
+      <a class="btn ghost" href="#metodo">Guarda come lavoro</a>
+    </div>
+    <div class="proof">
+      <span><svg viewBox="0 0 20 20" fill="none"><path d="M3 10.5l4.5 4.5L17 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><b>Laurea</b> al Politecnico di Milano</span>
+      <span><svg viewBox="0 0 20 20" fill="none"><path d="M3 10.5l4.5 4.5L17 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><b>IELTS 8.0</b>, master in inglese</span>
+      <span><svg viewBox="0 0 20 20" fill="none"><path d="M3 10.5l4.5 4.5L17 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><b>20 €/h</b>, prima mezz'ora gratis</span>
+    </div>
+  </div>
+
+  <div class="board" aria-label="Esempio di lezione sulla lavagna">
+    <div class="bar"><span><i class="dot"></i><b>Lavagna condivisa</b> · esempio dal vivo</span><span>3ª liceo · equazioni</span></div>
+    <div class="sheet" id="sheet">
+      <div class="line on"><span class="m">2(x − 3) + 4 = 3x − 1</span><span class="why">partiamo da qui</span></div>
+      <div class="line"><span class="m">2x − 6 + 4 = 3x − 1</span><span class="why">distribuisco il 2: entrambi i termini!</span></div>
+      <div class="line"><span class="m">2x − 2 = 3x − 1</span><span class="why">sommo −6 + 4</span></div>
+      <div class="line"><span class="m">−2 + 1 = 3x − 2x</span><span class="why">x a destra, numeri a sinistra: cambio segno</span></div>
+      <div class="line"><span class="m">−1 = x</span><span class="why">e verifico sostituendo</span></div>
+      <div class="line final"><span class="m">x = −1 ✓</span><span class="why">2(−4) + 4 = −4 = 3(−1) − 1 ✓</span></div>
+    </div>
+    <div class="foot">
+      <small id="hint">Clicca per vedere il passaggio successivo, come in lezione.</small>
+      <button class="btn sm" type="button" id="next">Prossimo passaggio</button>
+    </div>
+  </div>
+</div>
+
+<section id="materie">
+  <h2>Cosa posso insegnarti</h2>
+  <p class="sub">Scegli la materia: ti dico cosa copriamo e gli ostacoli che risolviamo più spesso.</p>
+  <div class="chips" role="tablist">
+    <button class="chip" role="tab" aria-selected="true" data-t="mat">Matematica</button>
+    <button class="chip" role="tab" aria-selected="false" data-t="fis">Fisica</button>
+    <button class="chip" role="tab" aria-selected="false" data-t="ing">Inglese</button>
+    <button class="chip" role="tab" aria-selected="false" data-t="sto">Storia e filosofia</button>
+    <button class="chip" role="tab" aria-selected="false" data-t="ita">Italiano e latino</button>
+  </div>
+  <div class="panel" id="panel">
+    <div><span class="tag" id="p-tag">Tutti gli anni del liceo</span><h3 id="p-title">Matematica</h3><p id="p-desc" style="margin-top:8px;color:var(--ink-2)">Dalle equazioni di primo grado all'analisi di quinta. È la materia su cui ho dato più esami all'università, e so esattamente dove ci si perde.</p></div>
+    <div><h3>Dove ti aiuto di più</h3><ul id="p-list"><li>Equazioni, disequazioni e sistemi</li><li>Funzioni, limiti, derivate e integrali</li><li>Goniometria e trigonometria</li><li>Preparazione alla maturità e ai test d'ingresso</li></ul></div>
+  </div>
+</section>
+
+<section id="metodo">
+  <h2>Come lavoriamo, lezione per lezione</h2>
+  <p class="sub">Quattro passi, sempre gli stessi. Non do mai la soluzione pronta: in verifica devi farcela da solo.</p>
+  <div class="method">
+    <div class="st"><h3>Capiamo dove ti blocchi</h3><p>Nella mezz'ora gratuita guardiamo programma e ultime verifiche e fissiamo un obiettivo concreto.</p></div>
+    <div class="st"><h3>Teoria in parole semplici</h3><p>Ripasso rapido del concetto, spiegato in modo diverso da come l'hai sentito in classe.</p></div>
+    <div class="st"><h3>Esercizi guidati, poi da solo</h3><p>Prima ragioniamo insieme sul metodo, poi risolvi tu mentre ti correggo passo per passo.</p></div>
+    <div class="st"><h3>Appunti a fine lezione</h3><p>Ti mando la lavagna in PDF: schemi e passaggi da rivedere prima della verifica.</p></div>
+  </div>
+</section>
+
+<section id="prezzi">
+  <h2>Prezzi chiari</h2>
+  <p class="sub">Si paga prima della lezione, con bonifico o PayPal: così sappiamo entrambi che l'orario è confermato. Nessun abbonamento.</p>
+  <div class="pricing">
+    <div class="plans">
+      <div class="plan free"><span class="big">0 € <small>30 minuti</small></span><span></span><p>Prima mezz'ora di conoscenza: ci capiamo, vedi come lavoro, decidi senza impegno.</p></div>
+      <div class="plan"><span class="big">20 € <small>all'ora</small></span><span></span><p>Lezione singola online di 60 minuti, appunti in PDF inclusi.</p></div>
+      <div class="plan"><span class="big">180 € <small>10 ore</small></span><span></span><p>Pacchetto da 10 ore (18 €/h), da usare quando vuoi entro 3 mesi.</p></div>
+    </div>
+    <div class="calc">
+      <label for="ore">Quante ore a settimana ti servono?</label>
+      <input type="range" id="ore" min="1" max="4" step="1" value="2">
+      <div class="out">
+        <div><b id="o-mese">8 ore</b><span>al mese</span></div>
+        <div><b id="o-costo">144 €</b><span id="o-nota">al mese con il pacchetto</span></div>
+      </div>
+      <p class="note" id="o-risp">Risparmi 16 € al mese rispetto alle lezioni singole.</p>
+    </div>
+  </div>
+</section>
+
+<section id="disponibilita">
+  <h2>Quando ci sono</h2>
+  <p class="sub">Orari in ora italiana. Le fasce verdi sono quelle in cui di solito fisso le lezioni; per altri orari scrivimi.</p>
+  <div class="avail" aria-label="Disponibilità settimanale">
+    <div class="d">Lun</div><div class="d">Mar</div><div class="d">Mer</div><div class="d">Gio</div><div class="d">Ven</div><div class="d">Sab</div><div class="d">Dom</div>
+    <div>mattina</div><div>mattina</div><div>mattina</div><div class="on">7–11</div><div class="on">7–11</div><div class="on">8–13</div><div class="on">8–13</div>
+    <div class="on">14–16</div><div class="on">14–16</div><div class="on">14–16</div><div class="on">14–16</div><div class="on">14–16</div><div class="on">14–18</div><div class="on">14–18</div>
+    <div>sera</div><div>sera</div><div>sera</div><div>sera</div><div>sera</div><div>sera</div><div>sera</div>
+  </div>
+  <p class="legend">Il tardo pomeriggio e la sera italiana di solito non sono disponibili. Rispondo ai messaggi in giornata.</p>
+</section>
+
+<section id="genitori">
+  <h2>Per i genitori</h2>
+  <p class="sub">Le domande che mi fanno più spesso, con risposte dirette.</p>
+  <div class="faq">
+    <details><summary>Chi sei, in due righe?</summary><p>Claudio, 22 anni, laureato in Ingegneria Biomedica al Politecnico di Milano, oggi studente di un master in Ingegneria Biomedica in un'università internazionale, in inglese. Ho fatto il liceo e so cosa vuol dire trovarsi davanti a un argomento che sembra impossibile finché qualcuno non te lo spiega nel modo giusto.</p></details>
+    <details><summary>Come funziona una lezione online?</summary><p>Su Zoom o Google Meet, con una lavagna condivisa su iPad: vostro figlio vede ogni passaggio scritto in tempo reale, come quella in alto in questa pagina. A fine lezione riceve il PDF della lavagna. Serve solo un computer o tablet con connessione.</p></details>
+    <details><summary>Come capisco se sta funzionando?</summary><p>Dopo la prima mezz'ora vi scrivo che cosa ho visto e un obiettivo per le prossime lezioni. Poi, se volete, ogni tre o quattro lezioni un messaggio breve su cosa sta migliorando e cosa manca.</p></details>
+    <details><summary>Quanto costa e come si paga?</summary><p>20 € l'ora, oppure 180 € per un pacchetto di 10 ore. Il pagamento è anticipato: la lezione singola si paga quando si fissa l'orario, il pacchetto all'acquisto, con bonifico o PayPal. La prima mezz'ora è gratuita e non impegna a nulla.</p></details>
+    <details><summary>E se dobbiamo spostare o annullare?</summary><p>Basta avvisare entro 24 ore e la lezione si sposta senza costi, l'importo resta valido per la nuova data. Con meno preavviso, salvo imprevisti seri, la lezione si considera fatta.</p></details>
+    <details><summary>Insegni anche in inglese?</summary><p>Sì. Studio in un master interamente in inglese e ho 8.0 all'IELTS Academic: posso seguire anche chi frequenta un liceo con materie in inglese o un percorso IB.</p></details>
+  </div>
+</section>
+
+<section id="recensioni">
+  <h2>Cosa dicono gli studenti</h2>
+  <p class="sub">Ho iniziato da poco a dare lezioni online: qui compariranno le recensioni dei primi studenti, man mano che arrivano.</p>
+  <div class="reviews">
+    <div class="rev"><span class="stars">★★★★★</span><p>La prima recensione comparirà qui.</p><span class="who">Studente o genitore</span></div>
+    <div class="rev"><span class="stars">★★★★★</span><p>La seconda recensione comparirà qui.</p><span class="who">Studente o genitore</span></div>
+    <div class="rev"><span class="stars">★★★★★</span><p>La terza recensione comparirà qui.</p><span class="who">Studente o genitore</span></div>
+  </div>
+</section>
+
+<section id="contatti">
+  <h2>Prenota la mezz'ora gratuita</h2>
+  <p class="sub">Compila e ti apro un messaggio WhatsApp già scritto. Oppure scrivimi direttamente.</p>
+  <div class="contact">
+    <form class="form" id="f">
+      <div class="two">
+        <label>Nome <input id="f-nome" type="text" placeholder="Es. Giulia" required></label>
+        <label>Chi scrive <select id="f-chi"><option value="studente">Lo studente</option><option value="genitore">Un genitore</option></select></label>
+      </div>
+      <div class="two">
+        <label>Materia <select id="f-mat"><option>Matematica</option><option>Fisica</option><option>Inglese</option><option>Storia</option><option>Filosofia</option><option>Italiano</option><option>Latino</option></select></label>
+        <label>Classe <select id="f-cls"><option>1ª liceo</option><option>2ª liceo</option><option>3ª liceo</option><option>4ª liceo</option><option>5ª liceo</option><option>Scuola media</option><option>Altro</option></select></label>
+      </div>
+      <label>Cosa non va, in una riga <textarea id="f-txt" placeholder="Es. verifica sulle disequazioni tra due settimane, non ho capito i sistemi"></textarea></label>
+      <button class="btn" type="submit">Apri il messaggio su WhatsApp</button>
+      <p style="font-size:13px;color:var(--ink-2)">Non invia nulla da solo: si apre WhatsApp con il testo pronto, lo mandi tu.</p>
+    </form>
+    <div class="direct">
+      <h3>Oppure diretto</h3>
+      <div class="row"><code>+39 366 441 6829</code><button class="copy" type="button" data-copy="+39 366 441 6829">Copia</button></div>
+      <div class="row"><code>claudio.merli00@gmail.com</code><button class="copy" type="button" data-copy="claudio.merli00@gmail.com">Copia</button></div>
+      <p>WhatsApp è il modo più rapido: rispondo in giornata, di solito entro un paio d'ore.</p>
+      <p>Mi trovi anche su <a href="https://www.superprof.it" target="_blank" rel="noopener">Superprof</a> e <a href="https://www.letuelezioni.it" target="_blank" rel="noopener">Letuelezioni</a>, se preferite prenotare da lì.</p>
+    </div>
+  </div>
+</section>
+
+<footer><span>Ripetizioni con Claudio · lezioni esclusivamente online</span><span>Milano, Italia</span></footer>
+</main>
+
+<script>
+(function(){
+  // chi sei
+  var who=document.querySelectorAll('.who button');
+  var h1=document.querySelector('h1'), lead=document.querySelector('.lead');
+  who.forEach(function(b){b.addEventListener('click',function(){
+    who.forEach(function(x){x.setAttribute('aria-pressed','false')}); b.setAttribute('aria-pressed','true');
+    var k=b.dataset.who==='genitore'?'g':'s';
+    h1.innerHTML=h1.dataset[k]; lead.textContent=lead.dataset[k];
+    var sel=document.getElementById('f-chi'); if(sel) sel.value=b.dataset.who;
+    try{localStorage.setItem('who',b.dataset.who)}catch(e){}
+  })});
+  try{var w=localStorage.getItem('who'); if(w==='genitore') document.querySelector('[data-who="genitore"]').click();}catch(e){}
+
+  // lavagna
+  var lines=document.querySelectorAll('#sheet .line'), i=1, next=document.getElementById('next'), hint=document.getElementById('hint');
+  next.addEventListener('click',function(){
+    if(i>=lines.length){ lines.forEach(function(l,n){ if(n>0) l.classList.remove('on')}); i=1; next.textContent='Prossimo passaggio'; hint.textContent='Clicca per vedere il passaggio successivo, come in lezione.'; return; }
+    lines[i].classList.add('on'); i++;
+    if(i>=lines.length){ next.textContent='Ricomincia'; hint.textContent='Ogni passaggio ha il suo perché scritto accanto. In lezione lo scrivi tu, io correggo.'; }
+    else { hint.textContent='Passaggio '+i+' di '+(lines.length-1)+'.'; }
+  });
+
+  // materie
+  var data={
+    mat:{tag:'Tutti gli anni del liceo',title:'Matematica',desc:"Dalle equazioni di primo grado all'analisi di quinta. È la materia su cui ho dato più esami all'università, e so esattamente dove ci si perde.",list:['Equazioni, disequazioni e sistemi','Funzioni, limiti, derivate e integrali','Goniometria e trigonometria',"Preparazione alla maturità e ai test d'ingresso"]},
+    fis:{tag:'Tutti gli anni del liceo',title:'Fisica',desc:'La fisica è matematica con un significato: lavoriamo sempre su cosa succede davvero, poi sulla formula. Ho dato fisica, meccanica e termodinamica a ingegneria.',list:['Cinematica e dinamica, piani inclinati e attrito','Energia, lavoro e quantità di moto','Termodinamica e gas','Elettrostatica, circuiti e campi magnetici']},
+    ing:{tag:'Liceo, certificazioni, IB',title:'Inglese',desc:'8.0 all’IELTS Academic e un master interamente in inglese. Grammatica spiegata semplice, ma soprattutto tanta conversazione: la lingua si impara usandola.',list:['Grammatica e verifiche scolastiche','Conversazione e pronuncia','Preparazione a IELTS, FCE e PET','Materie in inglese per chi fa IB o liceo internazionale']},
+    sto:{tag:'Interrogazioni e maturità',title:'Storia e filosofia',desc:'Si imparano male a memoria e bene quando si capiscono cause e collegamenti. Costruiamo insieme mappe di una pagina, poi ti alleni a esporre come in interrogazione.',list:['Mappe e schemi per capitolo','Confronto tra autori in filosofia','Esposizione orale e gestione dell’ansia da interrogazione','Tesina e colloquio di maturità']},
+    ita:{tag:'Scrittura e traduzione',title:'Italiano e latino',desc:'Analisi del testo, temi e grammatica per italiano; metodo passo per passo per tradurre dal latino senza andare a tentativi.',list:['Analisi del testo e tema argomentativo','Grammatica e punteggiatura','Latino: analisi logica, declinazioni, traduzione guidata','Letteratura in vista dell’interrogazione']}
+  };
+  document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){
+    document.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-selected','false')}); c.setAttribute('aria-selected','true');
+    var d=data[c.dataset.t];
+    document.getElementById('p-tag').textContent=d.tag; document.getElementById('p-title').textContent=d.title; document.getElementById('p-desc').textContent=d.desc;
+    var ul=document.getElementById('p-list'); ul.innerHTML=''; d.list.forEach(function(t){var li=document.createElement('li'); li.textContent=t; ul.appendChild(li)});
+    var sel=document.getElementById('f-mat'); if(sel){ var first=d.title.split(' ')[0]; for(var k=0;k<sel.options.length;k++){ if(sel.options[k].text===first) sel.selectedIndex=k; } }
+  })});
+
+  // calcolatore
+  var r=document.getElementById('ore');
+  function calc(){ var h=+r.value*4; var single=h*20; var pack=h*18; document.getElementById('o-mese').textContent=h+' ore'; document.getElementById('o-costo').textContent=pack+' €'; document.getElementById('o-risp').textContent='Risparmi '+(single-pack)+' € al mese rispetto alle lezioni singole ('+single+' €).'; }
+  r.addEventListener('input',calc); calc();
+
+  // form -> whatsapp
+  document.getElementById('f').addEventListener('submit',function(e){
+    e.preventDefault();
+    var n=document.getElementById('f-nome').value.trim(), chi=document.getElementById('f-chi').value, m=document.getElementById('f-mat').value, c=document.getElementById('f-cls').value, t=document.getElementById('f-txt').value.trim();
+    var msg='Ciao Claudio, sono '+n+(chi==='genitore'?' (genitore)':'')+'. Vorrei prenotare la mezz’ora gratuita per '+m+', '+c+'.'+(t?' '+t:'');
+    window.open('https://wa.me/393664416829?text='+encodeURIComponent(msg),'_blank');
+    var a=document.createElement('a'); a.href='https://wa.me/393664416829?text='+encodeURIComponent(msg); a.target='_blank'; a.rel='noopener'; a.className='btn'; a.textContent='Se WhatsApp non si è aperto, clicca qui'; e.target.appendChild(a);
+  });
+
+  // copia
+  document.querySelectorAll('.copy').forEach(function(b){b.addEventListener('click',function(){
+    var t=b.dataset.copy; var done=function(){b.textContent='Copiato';setTimeout(function(){b.textContent='Copia'},1500)};
+    function sel(){var c=b.previousElementSibling;var rg=document.createRange();rg.selectNodeContents(c);var s=getSelection();s.removeAllRanges();s.addRange(rg)}
+    try{navigator.clipboard.writeText(t).then(done).catch(sel)}catch(e){sel()}
+  })});
+})();
+</script>
+
+</body>
+</html>
